@@ -1,0 +1,28 @@
+body {
+  padding-top: 50px;
+}
+
+#middleSection {
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+}
+#bottomSection {
+  border-top: 2px solid #ddd;
+}
+.box{
+  border: 2px solid #888;
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center
+}
+.boxImage{
+  width: 100%;
+  cursor: pointer;
+  padding: 10px;
+}
+.modalImage{
+  width: 100%;
+}
+.outerBox{
+  margin-top: 10px;
+}

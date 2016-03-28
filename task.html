@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="task">
+<head>
+  <title>Flynava </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/task.js"></script>
+    <script type="text/javascript" src="js/stockService.js"></script>
+    <script type="text/javascript" src="js/chartist.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/chartist.min.css">
+    <link rel="stylesheet" type="text/css" href="css/task.css">
+</head>
+  <body ng-controller="myController">
+   <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Flynava</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="# https://github.com/abhishekverma2992">Github Profile</a></li>
+            <li class="active"><a href="#">Source Code</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div id="leftSection"
+        class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <h1>Left Section</h1>
+        <div class="row">   
+          <div ng-repeat="company in companyList">
+            <h3 class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{company}}</h3>
+            <div class="ct-chart" id="{{company}}"></div>
+          </div>
+        </div>
+      </div>
+      <div id="middleSection"
+        class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h1>Middle Section</h1>
+        <div ng-repeat="image in boxImages" class="col-lg-6 col-md-6 outerBox">
+          <div class="box">
+            <img ng-src="{{image.imgUrl}}" class="boxImage"
+              ng-click="showModal(image)"/>
+          </div>
+        </div>
+      </div>
+
+      <div id="rightSection"
+        class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <h1>Right Section</h1>
+        <div ng-repeat="company in companiesList">
+          <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 ">
+              <span class="h3">{{company.name}}</span>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+              <button class="btn btn-sm btn-primary"
+                ng-click="showDetails(company)">Details</button>  
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+              <button class="btn btn-sm btn-danger"
+                ng-click="delete(company)">ok</button>  
+            </div>
+          </div>
+          <div class="row">
+            <blockquote ng-if ="company.showDetails"
+              class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              {{company.description}}
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BS Modal -->
+    <div class="col-lg-12" id="bottomSection">
+      <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">{{selectedBox.title}}</h4>
+            </div>
+            <div class="modal-body">
+              <img ng-src="{{selectedBox.imgUrl}}" class="modalImage"/>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+    </div>
+</body>
+</html>   
